@@ -1,10 +1,7 @@
 <p style="color: green"><%= notice %></p>
 
 <h1>States</h1>
-
-<%= link_to "New state", new_state_path %> 
-
-<table border="3">
+<table class="table" border="3">
   <thead>
     <tr>
       <th>State Name</th>
@@ -21,15 +18,17 @@
           <%= state.name %>
         </td>   
         <td>
-          <%= link_to "Download", state.attachment_url %>
+          <%= link_to "Download", state.attachment_url, class:"btn btn-primary"%>
         </td>  
         <td>
-          <%= link_to "Show state", state %>
+          <%= link_to "Show state", state, class:"btn btn-success"%>
         </td> 
         <td>
-          <%= link_to "Delete",  state, method: :delete, confirm: "Are you sure you want to delete #{state.name}?" %>
+          <%= link_to "Delete",  state, method: :delete, confirm: "Are you sure you want to delete #{state.name}?", class:"btn btn-danger"%>
         </td>   
       </tr>
     <% end %>
   </tbody>
 </table>
+
+<%= link_to "New state", new_state_path, class:"btn btn-primary" %>
