@@ -1,0 +1,35 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>States</h1>
+
+<%= link_to "New state", new_state_path %> 
+
+<table border="3">
+  <thead>
+    <tr>
+      <th>State Name</th>
+      <th>Download Link</th>
+      <th>Show State</th>
+      <th>Action</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @states.each do |state|%>
+      <tr>   
+        <td>
+          <%= state.name %>
+        </td>   
+        <td>
+          <%= link_to "Download", state.attachment_url %>
+        </td>  
+        <td>
+          <%= link_to "Show state", state %>
+        </td> 
+        <td>
+          <%= link_to "Delete",  state, method: :delete, confirm: "Are you sure you want to delete #{state.name}?" %>
+        </td>   
+      </tr>
+    <% end %>
+  </tbody>
+</table>
