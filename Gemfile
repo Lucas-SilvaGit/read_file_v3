@@ -71,5 +71,5 @@ group :test do
   gem "webdrivers"
 end
 
-gem 'carrierwave'   
-gem 'bootstrap'  
+gem 'carrierwave'
+gem 'bootstrap', '~> 5.1.3'
