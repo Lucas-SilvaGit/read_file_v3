@@ -1,3 +1,4 @@
+
 <h1>Editing state</h1>
 
 <%= render "form", state: @state %>
@@ -5,6 +6,6 @@
 <br>
 
 <div>
-  <%= link_to "Show this state", @state %> |
-  <%= link_to "Back to states", states_path %>
+  <%= link_to "Show this state", @state, class:"btn btn-primary" %>
+  <%= link_to "Back to states", states_path, class:"btn btn-warning" %>
 </div>

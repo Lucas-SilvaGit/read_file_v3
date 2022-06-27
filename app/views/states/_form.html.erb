@@ -1,3 +1,4 @@
+<div class="card shadow bg-white rounded">
 <%= form_with(model: state) do |form| %>
   <% if state.errors.any? %>
     <div style="color: red">
@@ -11,17 +12,20 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.label :name, style: "display: block", class:"form-label" %>
+    <%= form.text_field :name, class:"form-control form-control-sm" %>
   </div>
 
-  <div>
-    <%= form.label :attachment, style: "display: block" %>
-    <%= form.file_field :attachment %>
+  <div class="form-group">
+    <%= form.file_field :attachment, class:"form-control form-control-sm" %>
   </div>
 
-  <div>
-    <%= form.submit %>
+  <br>
+
+  <div class="actions">
+    <%= form.submit nil, class:"btn btn-info" %>
   </div>
+
 <% end %>
+</div>
