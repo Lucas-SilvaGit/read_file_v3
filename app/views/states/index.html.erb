@@ -1,7 +1,9 @@
 <p style="color: green"><%= notice %></p>
 
+<div class="container-fluid">
 <h1>States</h1>
-<table class="table" border="3">
+<div class="card">
+<table class="table table-striped">
   <thead>
     <tr>
       <th>State Name</th>
@@ -18,7 +20,7 @@
           <%= state.name %>
         </td>   
         <td>
-          <%= link_to "Download", state.attachment_url, class:"btn btn-primary"%>
+          <%= link_to "Download", state.attachment_url, download: '',  class:"btn btn-primary"%>
         </td>  
         <td>
           <%= link_to "Show state", state, class:"btn btn-success"%>
@@ -30,5 +32,7 @@
     <% end %>
   </tbody>
 </table>
-
+</div>
+<br>
 <%= link_to "New state", new_state_path, class:"btn btn-primary" %>
+</div>
