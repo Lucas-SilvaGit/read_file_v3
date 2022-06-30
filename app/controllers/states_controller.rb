@@ -26,11 +26,11 @@ class StatesController < ApplicationController
     respond_to do |format|
       if @state.save
         # binding.pry
-        upload = @state.attachment.path
-        File.open(upload).each_with_index do |line,index|
-          next if index == 0
-          record = line.split(';')
-          Client.create(name:  record[0], age:  record[1], address:  record[2].gsub("\n",''))
+        upload = @state.attachment.path  #get the relative path of my state.attachment object
+        File.open(upload).each_with_index do |line,index| #opens the uploaded file by iterating each line with an index
+          next if index == 0 #checks if the index is equal to 0 and skips to the next one
+          record = line.split(';') #assign the variable record each line using split method to break the line at each (;)
+          Client.create(name:  record[0], age:  record[1], address:  record[2].gsub("\n",''))#create the Client object by assigning to the database table fields the position of the record variable array
         end
 
         format.html { redirect_to state_url(@state), notice: "State was successfully created." }
