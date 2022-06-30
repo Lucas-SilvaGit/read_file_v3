@@ -25,6 +25,14 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.save
+        # binding.pry
+        upload = @state.attachment.path
+        File.open(upload).each_with_index do |line,index|
+          next if index == 0
+          record = line.split(';')
+          Client.create(name:  record[0], age:  record[1], address:  record[2].gsub("\n",''))
+        end
+
         format.html { redirect_to state_url(@state), notice: "State was successfully created." }
         format.json { render :show, status: :created, location: @state }
       else
@@ -56,6 +64,16 @@ class StatesController < ApplicationController
       format.json { head :no_content }
     end
   end
+
+  # def uploaded_io
+  #   upload = @state.attachment.path
+  #   File.open(upload).each_with_index do |line,index|
+  #     next if index == 0
+  #     record = line.split(';')
+  #     client = Client.new(name:  record[0], age:  record[1], address:  record[2])
+  #     client.save
+  #   end
+  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
