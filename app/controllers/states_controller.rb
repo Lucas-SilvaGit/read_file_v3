@@ -21,16 +21,12 @@ class StatesController < ApplicationController
 
   # POST /states or /states.json
   def create
-    @state = State.new(state_params)
 
     respond_to do |format|
-      if @state.save
-        upload = @state.attachment.path  #get the relative path of my state.attachment object
-        File.open(upload).each_with_index do |line,index| #opens the uploaded file by iterating each line with an index
-          next if index == 0 #checks if the index is equal to 0 and skips to the next one
-          record = line.split(';') #assign the variable record each line using split method to break the line at each (;)
-          Client.find_or_create_by(name:  record[0], age:  record[1], address:  record[2].gsub("\n",''))#create the Client object by assigning to the database table fields the position of the record variable array
-        end
+      @state = State.new(state_params)
+
+      if @state.save          
+        InsertRecordsService.new(@state).insert_record #calls the service class passing the variable and using the method
 
         format.html { redirect_to state_url(@state), notice: "State was successfully created." }
         format.json { render :show, status: :created, location: @state }
@@ -63,16 +59,6 @@ class StatesController < ApplicationController
       format.json { head :no_content }
     end
   end
-
-  # def uploaded_io
-  #   upload = @state.attachment.path
-  #   File.open(upload).each_with_index do |line,index|
-  #     next if index == 0
-  #     record = line.split(';')
-  #     client = Client.new(name:  record[0], age:  record[1], address:  record[2])
-  #     client.save
-  #   end
-  # end
 
   private
     # Use callbacks to share common setup or constraints between actions.
