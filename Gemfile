@@ -74,3 +74,5 @@ end
 
 gem 'carrierwave'
 gem 'bootstrap', '~> 5.1.3'
+gem 'redis'
+gem 'sidekiq'
