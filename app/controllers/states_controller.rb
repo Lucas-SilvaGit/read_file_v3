@@ -21,13 +21,12 @@ class StatesController < ApplicationController
 
   # POST /states or /states.json
   def create
-    sleep 8
+    sleep 20
     respond_to do |format|
       @state = State.new(state_params)
 
       if @state.save          
-        InsertRecordsService.new.insert_record #calls the service class passing the variable and using the method
-
+        InsertRecordsJob.perform_now(@state.id)
 
         format.html { redirect_to state_url(@state), notice: "State was successfully created." }
         format.json { render :show, status: :created, location: @state }
